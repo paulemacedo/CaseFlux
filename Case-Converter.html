@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Converter Advanced</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Case Converter Advanced</h1>
+    <div class="subtitle">
+      Conversor de texto e gerador inteligente de nomes.
+    </div>
+
+    <div class="tabs">
+      <button id="converterTabButton" class="active" onclick="showTab('converter')">
+        Case Converter
+      </button>
+
+      <button id="advancedTabButton" onclick="showTab('advanced')">
+        Title Case Avançado
+      </button>
+    </div>
+
+    <!-- Converter tab restored -->
+    <div id="converterTab">
+      <div class="layout">
+        <div>
+          <textarea id="converterInput" placeholder="Digite ou cole seu texto..."></textarea>
+
+          <div class="buttons">
+            <button onclick="generateConverter()">Gerar</button>
+            <button onclick="copyConverter()">Copiar</button>
+            <button onclick="clearConverter()">Limpar</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Tipo de Conversão</div>
+
+          <div class="config-group conversion-grid">
+            <button data-mode="sentence" onclick="setMode('sentence', this)">Formato Frase</button>
+            <button data-mode="lower" onclick="setMode('lower', this)">minúsculas</button>
+            <button data-mode="upper" onclick="setMode('upper', this)">MAIÚSCULAS</button>
+            <button data-mode="alternating" onclick="setMode('alternating', this)">aLtErNaDo</button>
+            <button data-mode="title" onclick="setMode('title', this)">Formato Título</button>
+            <button data-mode="title-case" onclick="setMode('title-case', this)">Formato Título 2</button>
+            <button data-mode="camel" onclick="setMode('camel', this)">camelCase</button>
+            <button data-mode="pascal" onclick="setMode('pascal', this)">PascalCase</button>
+            <button data-mode="snake" onclick="setMode('snake', this)">snake_case</button>
+            <button data-mode="kebab" onclick="setMode('kebab', this)">kebab-case</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced tab -->
+    <div id="advancedTab" class="hidden">
+      <div class="layout">
+        <div>
+          <div class="input-with-icons">
+            <input id="titleInput" placeholder="Obra / Título" />
+            <div class="icons">
+              <button class="icon-btn" title="Limpar inválidos" onclick="cleanField('titleInput')">✖</button>
+            </div>
+          </div>
+
+          <div class="input-with-icons" id="authorField">
+            <input id="authorInput" placeholder="Autor" />
+            <div class="icons">
+              <button class="icon-btn" title="Limpar inválidos" onclick="cleanField('authorInput')">✖</button>
+            </div>
+          </div>
+
+          <div class="textarea-with-icons">
+            <textarea id="resultOutput" placeholder="Resultado" readonly></textarea>
+            <div class="icons textarea-icons">
+              <button class="icon-btn" title="Limpar inválidos" onclick="cleanField('resultOutput')">✖</button>
+              <button class="icon-btn" title="Inverter" onclick="invertField('resultOutput')">⇄</button>
+            </div>
+          </div>
+
+          <div class="buttons">
+            <button onclick="generateAdvanced()">Gerar</button>
+            <button onclick="copyAdvanced()">Copiar</button>
+            <button onclick="clearAdvanced()">Limpar</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-top">
+            <div class="panel-title">Ajustes</div>
+            <button id="gearToggle" class="gear-btn" title="Mostrar configurações" onclick="toggleSettings()">⚙</button>
+          </div>
+
+          <div id="settingsPanel" class="settings-panel hidden">
+            <div class="config-group">
+              <label>
+                <input type="checkbox" id="detectAuthor" onchange="toggleAuthorField()" />
+                Detectar Autor (futuro)
+              </label>
+
+              <label>
+                <input type="checkbox" id="unknownAuthor" />
+                Autor Desconhecido
+              </label>
+
+              <label>
+                <input type="checkbox" id="autoCleanup" checked />
+                Limpeza Automática
+              </label>
+              
+              <div class="minor-words"> 
+                <label>
+                  <input type="checkbox" id="minorWordsEnabled" checked onchange="toggleMinorWords()" />
+                  Minor Words
+                </label>
+
+                <div class="minor-words-box" id="minorWordsBox">
+                  <input
+                    id="minorWords"
+                    value="a,à,às,ao,aos,as,com,da,das,de,del,dela,dele,deles,delas,do,dos,e,em,na,nas,no,nos,o,os,ou,para,pela,pelas,pelo,pelos,por,se,um,uma,uns,umas,y,en,el,la,las,los,de,del,al,con,por,para,sin,sobre,un,una,unos,unas,the,of,and,in,on,to,for,from,with,without,over,under"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copy-message" id="copyMessage">
+      Copiado.
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
