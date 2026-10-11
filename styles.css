@@ -727,6 +727,15 @@ dialog::backdrop {
 
 /* ---------- aviso ---------- */
 
+.site-footer {
+  margin-top: clamp(3rem, 8vw, 6rem);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
 .toast {
   position: fixed;
   left: 50%;
