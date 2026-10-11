@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Converter Advanced</title>
+  <meta name="description" content="CaseFlux: conversor de texto e gerador de nomes." />
+  <title>CaseFlux - Conversor de texto</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Case Converter Advanced</h1>
+    <h1>CaseFlux</h1>
     <div class="subtitle">
       Conversor de texto e gerador inteligente de nomes.
     </div>
 
     <div class="tabs">
-      <button id="converterTabButton" class="active" onclick="showTab('converter')">
-        Case Converter
+      <button id="converterTabButton" class="active" aria-selected="true" onclick="showTab('converter')">
+        Converter
       </button>
 
-      <button id="advancedTabButton" onclick="showTab('advanced')">
-        Title Case Avançado
+      <button id="advancedTabButton" aria-selected="false" onclick="showTab('advanced')">
+        Nomes de arquivo
       </button>
     </div>
 
@@ -27,6 +28,7 @@
     <div id="converterTab">
       <div class="layout">
         <div>
+          <label class="sr-only" for="converterInput">Texto para converter</label>
           <textarea id="converterInput" placeholder="Digite ou cole seu texto..."></textarea>
 
           <div class="buttons">
@@ -45,7 +47,7 @@
             <button data-mode="upper" onclick="setMode('upper', this)">MAIÚSCULAS</button>
             <button data-mode="alternating" onclick="setMode('alternating', this)">aLtErNaDo</button>
             <button data-mode="title" onclick="setMode('title', this)">Formato Título</button>
-            <button data-mode="title-case" onclick="setMode('title-case', this)">Formato Título 2</button>
+            <button data-mode="title-case" onclick="setMode('title-case', this)">Título (todas as iniciais)</button>
             <button data-mode="camel" onclick="setMode('camel', this)">camelCase</button>
             <button data-mode="pascal" onclick="setMode('pascal', this)">PascalCase</button>
             <button data-mode="snake" onclick="setMode('snake', this)">snake_case</button>
@@ -60,6 +62,7 @@
       <div class="layout">
         <div>
           <div class="input-with-icons">
+            <label class="sr-only" for="titleInput">Obra ou título</label>
             <input id="titleInput" placeholder="Obra / Título" />
             <div class="icons">
               <button class="icon-btn" title="Limpar inválidos" onclick="cleanField('titleInput')">✖</button>
@@ -67,6 +70,7 @@
           </div>
 
           <div class="input-with-icons" id="authorField">
+            <label class="sr-only" for="authorInput">Autor</label>
             <input id="authorInput" placeholder="Autor" />
             <div class="icons">
               <button class="icon-btn" title="Limpar inválidos" onclick="cleanField('authorInput')">✖</button>
@@ -74,6 +78,7 @@
           </div>
 
           <div class="textarea-with-icons">
+            <label class="sr-only" for="resultOutput">Resultado</label>
             <textarea id="resultOutput" placeholder="Resultado" readonly></textarea>
             <div class="icons textarea-icons">
               <button class="icon-btn" title="Limpar inválidos" onclick="cleanField('resultOutput')">✖</button>
@@ -130,7 +135,7 @@
       </div>
     </div>
 
-    <div class="copy-message" id="copyMessage">
+    <div class="copy-message" id="copyMessage" aria-live="polite">
       Copiado.
     </div>
   </div>
